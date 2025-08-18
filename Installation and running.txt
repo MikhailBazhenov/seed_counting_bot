@@ -1,0 +1,32 @@
+# First create a VPS server with Ubuntu 24 OS for the bot with 20 GB disc, 1G RAM and 1 CPU core
+# I usually use WinSCP to copy files to the server and PuTTY to run commands.
+# On the server, create a folder called /home/seed_counting_bot and copy all the files there, including sunflower_seeds_bot.py and yolo11_seeds.pt (model weights)
+
+# Installing virtual environment packages
+apt install python3.12-venv
+
+# Create virtual environment in the /home/venv directory
+python3 -m venv /home/venv
+
+# Activate environment
+source /home/venv/bin/activate
+
+# Install necessary libraries
+pip install python-telegram-bot
+pip install Pillow
+pip install ultralytics
+apt-get update && apt-get install libgl1
+
+# Now we can run the bot and test it
+python3 sunflower_seeds_bot.py
+
+# If it works fine, close the connection and run it again with 'nohup'
+
+# In a new connection we need to activate the environment
+source /home/venv/bin/activate
+
+# Switch to the bot folder
+cd /home/seed_counting_bot
+
+# Run the bot with 'nohup' so it continues to run after disconnecting from the server
+nohup python3 sunflower_seeds_bot.py
